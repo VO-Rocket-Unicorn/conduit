@@ -36,3 +36,4 @@ tsconfig.tsbuildinfo
 
 # graphify
 graphify-out/
+.claude
