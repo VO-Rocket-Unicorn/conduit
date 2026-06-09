@@ -333,7 +333,7 @@ export default function Page() {
     return sync.session.history.loading(id)
   })
   const userMessages = createMemo(
-    () => messages().filter((m) => m.role === "user") as UserMessage[],
+    () => messages().filter((m) => m.role === "user"),
     emptyUserMessages,
     { equals: same },
   )

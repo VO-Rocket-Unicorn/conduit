@@ -128,7 +128,7 @@ export function clearWorkspaceTerminals(
     entry?.value.clear()
   }
 
-  void removePersisted(terminalPersistTarget(scope, dir), platform)
+   removePersisted(terminalPersistTarget(scope, dir), platform)
 
   if (scope !== ServerScope.local) return
   const legacy = new Set(getLegacyTerminalStorageKeys(dir))
@@ -138,7 +138,7 @@ export function clearWorkspaceTerminals(
     }
   }
   for (const key of legacy) {
-    void removePersisted({ key }, platform)
+     removePersisted({ key }, platform)
   }
 }
 

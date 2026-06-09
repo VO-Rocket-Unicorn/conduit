@@ -55,7 +55,7 @@ it.instance("[#26514] subagent spawned from plan mode inherits read-only restric
     // Sanity: the plan agent itself blocks edit. (Note: `write` and
     // `apply_patch` route through the `edit` permission at the runtime
     // tool layer — see Permission.disabled / EDIT_TOOLS.)
-    expect(Permission.evaluate("edit", "/some/file.ts", planAgent!.permission).action).toBe("deny")
+    expect(Permission.evaluate("edit", "/some/file.ts", planAgent.permission).action).toBe("deny")
 
     // Simulate the plan-mode parent session: in real flow the plan
     // session's `permission` field is empty (Plan Mode lives on the agent
@@ -66,12 +66,12 @@ it.instance("[#26514] subagent spawned from plan mode inherits read-only restric
     const subagentSessionPermission = deriveSubagentSessionPermission({
       parentSessionPermission,
       parentAgent: planAgent,
-      subagent: generalAgent!,
+      subagent: generalAgent,
     })
 
     // Mirror the runtime evaluation in session/prompt.ts (~line 410, 639):
     //   ruleset: Permission.merge(agent.permission, session.permission ?? [])
-    const effective = Permission.merge(generalAgent!.permission, subagentSessionPermission)
+    const effective = Permission.merge(generalAgent.permission, subagentSessionPermission)
 
     expect(Permission.evaluate("edit", "/some/file.ts", effective).action).toBe("deny")
     expect(Permission.evaluate("edit", "/another/path/index.tsx", effective).action).toBe("deny")
@@ -93,9 +93,9 @@ it.instance("[#26514] explore subagent launched from plan mode also stays read-o
     const subagentSessionPermission = deriveSubagentSessionPermission({
       parentSessionPermission,
       parentAgent: planAgent,
-      subagent: explore!,
+      subagent: explore,
     })
-    const effective = Permission.merge(explore!.permission, subagentSessionPermission)
+    const effective = Permission.merge(explore.permission, subagentSessionPermission)
 
     // Already deny — sanity check.
     expect(Permission.evaluate("edit", "/x.ts", effective).action).toBe("deny")
@@ -118,9 +118,9 @@ it.instance(
       const subagentSessionPermission = deriveSubagentSessionPermission({
         parentSessionPermission,
         parentAgent: planAgent,
-        subagent: my!,
+        subagent: my,
       })
-      const effective = Permission.merge(my!.permission, subagentSessionPermission)
+      const effective = Permission.merge(my.permission, subagentSessionPermission)
 
       // BUG: on origin/dev edit resolves to "allow" because the plan
       // agent's `edit: deny *` rule never reaches the subagent.

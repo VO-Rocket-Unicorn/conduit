@@ -1764,15 +1764,15 @@ export type AgentConfig = {
     | {
         [key: string]: unknown
       }
-    | string
-    | "primary"
+     
+     
     | "secondary"
     | "accent"
     | "success"
     | "warning"
     | "error"
     | "info"
-    | number
+     
     | PermissionConfig
     | undefined
 }
@@ -1799,7 +1799,7 @@ export type ProviderConfig = {
      */
     headerTimeout?: number | false
     chunkTimeout?: number
-    [key: string]: unknown | string | boolean | number | false | number | false | number | undefined
+    [key: string]: unknown | string | boolean | number | false       | undefined
   }
   models?: {
     [key: string]: {
@@ -2730,7 +2730,7 @@ export type Workspace = {
   directory?: string | null
   extra?: unknown | null
   projectID: string
-  timeUsed: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
+  timeUsed: number | "NaN" | "Infinity" | "-Infinity"      
 }
 
 export type WorkspaceCreateError = {
@@ -2902,13 +2902,13 @@ export type ModelV2Info = {
       [key: string]: unknown
     }
     generation?: {
-      maxTokens?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      temperature?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      topP?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      topK?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      frequencyPenalty?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      presencePenalty?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      seed?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
+      maxTokens?: number | "NaN" | "Infinity" | "-Infinity"      
+      temperature?: number | "NaN" | "Infinity" | "-Infinity"      
+      topP?: number | "NaN" | "Infinity" | "-Infinity"      
+      topK?: number | "NaN" | "Infinity" | "-Infinity"      
+      frequencyPenalty?: number | "NaN" | "Infinity" | "-Infinity"      
+      presencePenalty?: number | "NaN" | "Infinity" | "-Infinity"      
+      seed?: number | "NaN" | "Infinity" | "-Infinity"      
       stop?: Array<string>
     }
     options?: {
@@ -2925,13 +2925,13 @@ export type ModelV2Info = {
       [key: string]: unknown
     }
     generation?: {
-      maxTokens?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      temperature?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      topP?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      topK?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      frequencyPenalty?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      presencePenalty?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
-      seed?: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
+      maxTokens?: number | "NaN" | "Infinity" | "-Infinity"      
+      temperature?: number | "NaN" | "Infinity" | "-Infinity"      
+      topP?: number | "NaN" | "Infinity" | "-Infinity"      
+      topK?: number | "NaN" | "Infinity" | "-Infinity"      
+      frequencyPenalty?: number | "NaN" | "Infinity" | "-Infinity"      
+      presencePenalty?: number | "NaN" | "Infinity" | "-Infinity"      
+      seed?: number | "NaN" | "Infinity" | "-Infinity"      
       stop?: Array<string>
     }
     options?: {
@@ -2939,7 +2939,7 @@ export type ModelV2Info = {
     }
   }>
   time: {
-    released: number | "NaN" | "Infinity" | "-Infinity" | "Infinity" | "-Infinity" | "NaN"
+    released: number | "NaN" | "Infinity" | "-Infinity"      
   }
   cost: Array<{
     tier?: {

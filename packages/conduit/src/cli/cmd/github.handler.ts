@@ -255,7 +255,7 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
       }
 
       async function promptModel() {
-        const providerData = providers[provider]!
+        const providerData = providers[provider]
 
         const model = await prompts.select({
           message: "Select model",
@@ -1183,14 +1183,14 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
           return await octoRest.rest.reactions.createForPullRequestReviewComment({
             owner,
             repo,
-            comment_id: triggerCommentId!,
+            comment_id: triggerCommentId,
             content: AGENT_REACTION,
           })
         }
         return await octoRest.rest.reactions.createForIssueComment({
           owner,
           repo,
-          comment_id: triggerCommentId!,
+          comment_id: triggerCommentId,
           content: AGENT_REACTION,
         })
       }
@@ -1210,7 +1210,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
           const reactions = await octoRest.rest.reactions.listForPullRequestReviewComment({
             owner,
             repo,
-            comment_id: triggerCommentId!,
+            comment_id: triggerCommentId,
             content: AGENT_REACTION,
           })
 
@@ -1220,7 +1220,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
           return await octoRest.rest.reactions.deleteForPullRequestComment({
             owner,
             repo,
-            comment_id: triggerCommentId!,
+            comment_id: triggerCommentId,
             reaction_id: eyesReaction.id,
           })
         }
@@ -1228,7 +1228,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
         const reactions = await octoRest.rest.reactions.listForIssueComment({
           owner,
           repo,
-          comment_id: triggerCommentId!,
+          comment_id: triggerCommentId,
           content: AGENT_REACTION,
         })
 
@@ -1238,7 +1238,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
         return await octoRest.rest.reactions.deleteForIssueComment({
           owner,
           repo,
-          comment_id: triggerCommentId!,
+          comment_id: triggerCommentId,
           reaction_id: eyesReaction.id,
         })
       }

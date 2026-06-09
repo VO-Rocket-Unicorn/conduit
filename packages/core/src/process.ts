@@ -212,7 +212,7 @@ export const layer = Layer.effect(
               return Stream.empty
             }),
           )
-          return Stream.concat(lines, tail) as Stream.Stream<string, AppProcessError | PlatformError>
+          return Stream.concat(lines, tail)
         }),
       )
       const mapped = built.pipe(

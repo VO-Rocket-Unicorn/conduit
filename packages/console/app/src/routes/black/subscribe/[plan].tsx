@@ -326,7 +326,7 @@ export default function BlackSubscribe() {
         await bookSubscription({
           workspaceID: id,
           plan: planData.id,
-          paymentMethodID: ws.billing.paymentMethodID!,
+          paymentMethodID: ws.billing.paymentMethodID,
           paymentMethodType: ws.billing.paymentMethodType!,
           paymentMethodLast4: ws.billing.paymentMethodLast4 ?? undefined,
         })

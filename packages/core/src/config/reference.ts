@@ -26,7 +26,7 @@ export type NormalizedInfo = Record<string, NormalizedEntry>
 
 export function validateAlias(name: string) {
   if (name.length === 0) return "Reference alias must not be empty"
-  if (/[\/\s`,]/.test(name)) return "Reference alias must not contain /, whitespace, comma, or backtick"
+  if (/[/\s`,]/.test(name)) return "Reference alias must not contain /, whitespace, comma, or backtick"
 }
 
 export function normalizeEntry(entry: Entry): NormalizedEntry {

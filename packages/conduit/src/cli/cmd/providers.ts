@@ -193,7 +193,7 @@ const handlePluginAuth = Effect.fn("Cli.providers.pluginAuth")(function* (
     }
     if (result.type === "success") {
       const saveProvider = result.provider ?? provider
-      const merged = { ...(metadata.metadata ?? {}), ...(result.metadata ?? {}) }
+      const merged = { ...metadata.metadata, ...result.metadata }
       yield* put(saveProvider, {
         type: "api",
         key: result.key ?? apiKey,
@@ -427,7 +427,7 @@ export const ProvidersLoginCommand = effectCmd({
 
     const plugin = hooks.findLast((x) => x.auth?.provider === provider)
     if (plugin && plugin.auth) {
-      const handled = yield* handlePluginAuth({ auth: plugin.auth! }, provider, args.method)
+      const handled = yield* handlePluginAuth({ auth: plugin.auth }, provider, args.method)
       if (handled) return
     }
 
@@ -441,7 +441,7 @@ export const ProvidersLoginCommand = effectCmd({
 
       const customPlugin = hooks.findLast((x) => x.auth?.provider === provider)
       if (customPlugin && customPlugin.auth) {
-        const handled = yield* handlePluginAuth({ auth: customPlugin.auth! }, provider, args.method)
+        const handled = yield* handlePluginAuth({ auth: customPlugin.auth }, provider, args.method)
         if (handled) return
       }
 

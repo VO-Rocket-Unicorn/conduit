@@ -199,7 +199,7 @@ describe("SessionV2.prompt", () => {
       ])
       expect(
         Array.from(
-          yield* session.events({ sessionID, after: streamed[0]!.cursor }).pipe(Stream.take(1), Stream.runCollect),
+          yield* session.events({ sessionID, after: streamed[0].cursor }).pipe(Stream.take(1), Stream.runCollect),
         ).map((event) => [event.cursor, event.event.type]),
       ).toEqual([[EventV2.Cursor.make(1), "session.next.prompt.admitted"]])
     }),

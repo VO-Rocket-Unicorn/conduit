@@ -109,7 +109,7 @@ function select(file: string | undefined, opts?: { acceptable?: boolean }) {
     const shell = resolve(file)
     if (shell) return shell
   }
-  if (process.platform === "win32") return win()[0]!
+  if (process.platform === "win32") return win()[0]
   return fallback()
 }
 

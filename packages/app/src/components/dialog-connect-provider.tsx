@@ -116,7 +116,7 @@ export function DialogConnectProvider(props: { provider: string }) {
     )
   }
 
-  const method = createMemo(() => (store.methodIndex !== undefined ? methods().at(store.methodIndex!) : undefined))
+  const method = createMemo(() => (store.methodIndex !== undefined ? methods().at(store.methodIndex) : undefined))
 
   const methodLabel = (value?: { type?: string; label?: string }) => {
     if (!value) return ""
@@ -177,11 +177,11 @@ export function DialogConnectProvider(props: { provider: string }) {
             timer.current = setTimeout(() => {
               timer.current = undefined
               if (!alive.value) return
-              dispatch({ type: "auth.complete", authorization: x.data! })
+              dispatch({ type: "auth.complete", authorization: x.data })
             }, delay)
             return
           }
-          dispatch({ type: "auth.complete", authorization: x.data! })
+          dispatch({ type: "auth.complete", authorization: x.data })
         })
         .catch((e) => {
           if (!alive.value) return

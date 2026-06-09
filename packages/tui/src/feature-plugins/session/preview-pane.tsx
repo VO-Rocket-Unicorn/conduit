@@ -247,7 +247,7 @@ function Exchange(props: { exchange: { user?: WithParts; assistant?: WithParts }
       </Show>
       <Show when={assistantMarkdown()}>
         <markdown
-          content={assistantMarkdown()!}
+          content={assistantMarkdown()}
           syntaxStyle={syntax()}
           streaming={false}
           internalBlockMode="top-level"

@@ -90,7 +90,7 @@ type SyncDefinition = Definition & {
 const syncRegistry = new Map<string, SyncDefinition>()
 
 // Synchronized events cross a JSON boundary, so their data schemas must encode and decode without services.
-const syncCodec = (definition: Definition) => definition.data as Schema.Codec<unknown, unknown, never, never>
+const syncCodec = (definition: Definition) => definition.data as Schema.Codec<unknown, unknown, never>
 
 export function define<const Type extends string, Fields extends Schema.Struct.Fields>(input: {
   readonly type: Type

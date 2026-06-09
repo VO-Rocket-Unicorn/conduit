@@ -125,7 +125,7 @@ const mcpTest = testEffect(
     Layer.provide(FSUtil.defaultLayer),
   ),
 )
-const service = MCP.Service as unknown as Effect.Effect<MCPNS.Interface, never, never>
+const service = MCP.Service as unknown as Effect.Effect<MCPNS.Interface, never>
 
 const config = (name: string) => ({
   mcp: {

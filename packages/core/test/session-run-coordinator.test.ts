@@ -927,7 +927,7 @@ describe("SessionRunCoordinator", () => {
         yield* Effect.yieldNow
 
         expect(reported).toHaveLength(1)
-        expect(Cause.squash(reported[0]!)).toBe(failure)
+        expect(Cause.squash(reported[0])).toBe(failure)
       }),
     ),
   )

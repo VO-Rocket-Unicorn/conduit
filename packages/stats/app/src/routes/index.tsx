@@ -86,10 +86,7 @@ const worldCountryGeometries: GeometryCollection<WorldCountryProperties> = {
   ...worldTopology.objects.countries,
   geometries: worldTopology.objects.countries.geometries.filter((country) => String(country.id ?? "") !== "010"),
 }
-const worldCountries = feature<WorldCountryProperties>(worldTopology, worldCountryGeometries) as FeatureCollection<
-  GeometryObject,
-  WorldCountryProperties
->
+const worldCountries = feature<WorldCountryProperties>(worldTopology, worldCountryGeometries)
 const worldProjection = geoEquirectangular().fitExtent(
   [
     [10, 12],

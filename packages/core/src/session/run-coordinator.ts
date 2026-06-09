@@ -45,7 +45,7 @@ type Entry<A, E> = {
   pending?: Demand
   explicitWaiter?: Deferred.Deferred<A, E>
   interruptSeq?: number
-  owner?: Fiber.Fiber<void, never>
+  owner?: Fiber.Fiber<void>
   stopping: boolean
 }
 

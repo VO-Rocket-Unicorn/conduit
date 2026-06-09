@@ -81,7 +81,7 @@ const inlineData = (uri: string) => {
   if (!uri.startsWith("data:")) return undefined
   const match = /^data:[^;,]+;base64,(.*)$/s.exec(uri)
   if (!match) throw new Error("Tool file data URI must contain raw base64 bytes")
-  return match[1]!
+  return match[1]
 }
 
 const legacyInlineData = (value: string) => {

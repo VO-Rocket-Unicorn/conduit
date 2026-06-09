@@ -61,8 +61,8 @@ export function isPromptEqual(a: Prompt, b: Prompt) {
 }
 
 let index = 0
-const [prompt, setPrompt] = createSignal<Prompt>(clonePrompt(DEFAULT_PROMPT))
-const [cursor, setCursor] = createSignal<number>(0)
+const [prompt, setPrompt] = createSignal(clonePrompt(DEFAULT_PROMPT))
+const [cursor, setCursor] = createSignal(0)
 const [items, setItems] = createSignal<ContextItem[]>([])
 
 const withKey = (item: Omit<ContextItem, "key"> & { key?: string }): ContextItem => ({

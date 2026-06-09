@@ -127,7 +127,7 @@ const live: Layer.Layer<
             return { result: "", error: `Unknown tool: ${toolName}` }
           }
           try {
-            const result = await t.execute!(JSON.parse(argsJson), {
+            const result = await t.execute(JSON.parse(argsJson), {
               toolCallId: _requestID,
               messages: input.messages,
               abortSignal: input.abort,

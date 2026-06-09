@@ -346,7 +346,7 @@ function HomeDesign() {
           focusServer={focusServer}
           selectProject={selectProject}
           openNewSession={openProjectNewSession}
-          chooseProject={(conn) => void chooseProject(conn)}
+          chooseProject={(conn) =>  chooseProject(conn)}
           editProject={editProject}
           closeProject={(conn, directory) => {
             const next = closeHomeProject(
@@ -463,14 +463,14 @@ function HomeProjectColumn(props: {
             size="large"
             class="titlebar-icon [&_[data-slot=icon-svg]]:text-v2-icon-icon-muted"
             icon={<IconV2 name="folder-add-left" />}
-            onClick={() => props.chooseProject(global.servers.list()[0]!)}
+            onClick={() => props.chooseProject(global.servers.list()[0])}
             aria-label={props.language.t("home.project.add")}
           />
         </Show>
       </div>
       <Show
         when={global.servers.list().length > 1}
-        fallback={<HomeProjectList {...props} server={global.servers.list()[0]!} />}
+        fallback={<HomeProjectList {...props} server={global.servers.list()[0]} />}
       >
         <For each={global.servers.list()}>
           {(item) => {

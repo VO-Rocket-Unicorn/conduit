@@ -64,7 +64,7 @@ export async function createConduitServer(options?: ServerOptions) {
           }
           clearTimeout(id)
           resolved = true
-          resolve(match[1]!)
+          resolve(match[1])
           return
         }
       }

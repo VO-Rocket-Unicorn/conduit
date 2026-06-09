@@ -960,7 +960,7 @@ export function Prompt(props: PromptProps) {
     }
     const selectedModel = local.model.current()
     if (!selectedModel) {
-      void promptModelWarning()
+       promptModelWarning()
       return false
     }
 

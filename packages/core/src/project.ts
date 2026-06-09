@@ -47,8 +47,7 @@ export interface Interface {
       id: ID
       directory: AbsolutePath
       vcs?: Vcs
-    },
-    never
+    }
   >
   /**
    * Temporary bridge method for writing the resolved project ID to the repo-local cache.
