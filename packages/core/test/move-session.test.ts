@@ -4,19 +4,19 @@ import fs from "fs/promises"
 import path from "path"
 import { eq } from "drizzle-orm"
 import { Effect, Layer } from "effect"
-import { MoveSession } from "@opencode-ai/core/control-plane/move-session"
-import { Database } from "@opencode-ai/core/database/database"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Git } from "@opencode-ai/core/git"
-import { EventV2 } from "@opencode-ai/core/event"
-import { Project } from "@opencode-ai/core/project"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
-import { AbsolutePath } from "@opencode-ai/core/schema"
-import { SessionV2 } from "@opencode-ai/core/session"
-import { SessionExecution } from "@opencode-ai/core/session/execution"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
-import { SessionTable } from "@opencode-ai/core/session/sql"
-import { SessionStore } from "@opencode-ai/core/session/store"
+import { MoveSession } from "@conduit-ai/core/control-plane/move-session"
+import { Database } from "@conduit-ai/core/database/database"
+import { FSUtil } from "@conduit-ai/core/fs-util"
+import { Git } from "@conduit-ai/core/git"
+import { EventV2 } from "@conduit-ai/core/event"
+import { Project } from "@conduit-ai/core/project"
+import { ProjectTable } from "@conduit-ai/core/project/sql"
+import { AbsolutePath } from "@conduit-ai/core/schema"
+import { SessionV2 } from "@conduit-ai/core/session"
+import { SessionExecution } from "@conduit-ai/core/session/execution"
+import { SessionProjector } from "@conduit-ai/core/session/projector"
+import { SessionTable } from "@conduit-ai/core/session/sql"
+import { SessionStore } from "@conduit-ai/core/session/store"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
 
@@ -57,7 +57,7 @@ async function initRepo(directory: string) {
   await $`git config core.autocrlf false`.cwd(directory).quiet()
   await $`git config core.fsmonitor false`.cwd(directory).quiet()
   await $`git config commit.gpgsign false`.cwd(directory).quiet()
-  await $`git config user.email test@opencode.test`.cwd(directory).quiet()
+  await $`git config user.email test@conduit.test`.cwd(directory).quiet()
   await $`git config user.name Test`.cwd(directory).quiet()
   await fs.writeFile(path.join(directory, "tracked.txt"), "initial\n")
   await $`git add tracked.txt`.cwd(directory).quiet()

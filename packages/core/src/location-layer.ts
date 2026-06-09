@@ -37,14 +37,14 @@ import { Ripgrep } from "./ripgrep"
 import { SessionStore } from "./session/store"
 import { SessionTodo } from "./session/todo"
 import { QuestionV2 } from "./question"
-import { LLMClient } from "@opencode-ai/llm"
-import { RequestExecutor } from "@opencode-ai/llm/route"
+import { LLMClient } from "@conduit-ai/llm"
+import { RequestExecutor } from "@conduit-ai/llm/route"
 import * as SessionRunnerLLM from "./session/runner/llm"
 import { SessionRunnerModel } from "./session/runner/model"
 import { SystemContextBuiltIns } from "./system-context/builtins"
 import { FetchHttpClient } from "effect/unstable/http"
 
-export class LocationServiceMap extends LayerMap.Service<LocationServiceMap>()("@opencode/example/LocationServiceMap", {
+export class LocationServiceMap extends LayerMap.Service<LocationServiceMap>()("@conduit/example/LocationServiceMap", {
   lookup: (ref: Location.Ref) => {
     const location = Location.layer(ref)
     const systemContext = SystemContextBuiltIns.locationLayer

@@ -1,17 +1,17 @@
 <p align="center">
-  <a href="https://opencode.ai">
+  <a href="https://conduit.ai">
     <picture>
       <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
       <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
-      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="OpenCode logo">
+      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="Conduit logo">
     </picture>
   </a>
 </p>
 <p align="center">Der Open-Source KI-Coding-Agent.</p>
 <p align="center">
-  <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
-  <a href="https://www.npmjs.com/package/opencode-ai"><img alt="npm" src="https://img.shields.io/npm/v/opencode-ai?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opencode/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opencode/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://conduit.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
+  <a href="https://www.npmjs.com/package/conduit-ai"><img alt="npm" src="https://img.shields.io/npm/v/conduit-ai?style=flat-square" /></a>
+  <a href="https://github.com/anomalyco/conduit/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/conduit/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -39,7 +39,7 @@
   <a href="README.vi.md">Tiếng Việt</a>
 </p>
 
-[![OpenCode Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opencode.ai)
+[![Conduit Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://conduit.ai)
 
 ---
 
@@ -47,18 +47,18 @@
 
 ```bash
 # YOLO
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://conduit.ai/install | bash
 
 # Paketmanager
-npm i -g opencode-ai@latest        # oder bun/pnpm/yarn
-scoop install opencode             # Windows
-choco install opencode             # Windows
-brew install anomalyco/tap/opencode # macOS und Linux (empfohlen, immer aktuell)
-brew install opencode              # macOS und Linux (offizielle Brew-Formula, seltener aktualisiert)
-sudo pacman -S opencode            # Arch Linux (Stable)
-paru -S opencode-bin               # Arch Linux (Latest from AUR)
-mise use -g opencode               # jedes Betriebssystem
-nix run nixpkgs#opencode           # oder github:anomalyco/opencode für den neuesten dev-Branch
+npm i -g conduit-ai@latest        # oder bun/pnpm/yarn
+scoop install conduit             # Windows
+choco install conduit             # Windows
+brew install anomalyco/tap/conduit # macOS und Linux (empfohlen, immer aktuell)
+brew install conduit              # macOS und Linux (offizielle Brew-Formula, seltener aktualisiert)
+sudo pacman -S conduit            # Arch Linux (Stable)
+paru -S conduit-bin               # Arch Linux (Latest from AUR)
+mise use -g conduit               # jedes Betriebssystem
+nix run nixpkgs#conduit           # oder github:anomalyco/conduit für den neuesten dev-Branch
 ```
 
 > [!TIP]
@@ -66,40 +66,40 @@ nix run nixpkgs#opencode           # oder github:anomalyco/opencode für den neu
 
 ### Desktop-App (BETA)
 
-OpenCode ist auch als Desktop-Anwendung verfügbar. Lade sie direkt von der [Releases-Seite](https://github.com/anomalyco/opencode/releases) oder [opencode.ai/download](https://opencode.ai/download) herunter.
+Conduit ist auch als Desktop-Anwendung verfügbar. Lade sie direkt von der [Releases-Seite](https://github.com/anomalyco/conduit/releases) oder [conduit.ai/download](https://conduit.ai/download) herunter.
 
 | Plattform             | Download                           |
 | --------------------- | ---------------------------------- |
-| macOS (Apple Silicon) | `opencode-desktop-mac-arm64.dmg`   |
-| macOS (Intel)         | `opencode-desktop-mac-x64.dmg`     |
-| Windows               | `opencode-desktop-windows-x64.exe` |
+| macOS (Apple Silicon) | `conduit-desktop-mac-arm64.dmg`   |
+| macOS (Intel)         | `conduit-desktop-mac-x64.dmg`     |
+| Windows               | `conduit-desktop-windows-x64.exe` |
 | Linux                 | `.deb`, `.rpm` oder AppImage       |
 
 ```bash
 # macOS (Homebrew)
-brew install --cask opencode-desktop
+brew install --cask conduit-desktop
 # Windows (Scoop)
-scoop bucket add extras; scoop install extras/opencode-desktop
+scoop bucket add extras; scoop install extras/conduit-desktop
 ```
 
 #### Installationsverzeichnis
 
 Das Installationsskript beachtet die folgende Prioritätsreihenfolge für den Installationspfad:
 
-1. `$OPENCODE_INSTALL_DIR` - Benutzerdefiniertes Installationsverzeichnis
+1. `$CONDUIT_INSTALL_DIR` - Benutzerdefiniertes Installationsverzeichnis
 2. `$XDG_BIN_DIR` - XDG Base Directory Specification-konformer Pfad
 3. `$HOME/bin` - Standard-Binärverzeichnis des Users (falls vorhanden oder erstellbar)
-4. `$HOME/.opencode/bin` - Standard-Fallback
+4. `$HOME/.conduit/bin` - Standard-Fallback
 
 ```bash
 # Beispiele
-OPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://opencode.ai/install | bash
-XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://opencode.ai/install | bash
+CONDUIT_INSTALL_DIR=/usr/local/bin curl -fsSL https://conduit.ai/install | bash
+XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://conduit.ai/install | bash
 ```
 
 ### Agents
 
-OpenCode enthält zwei eingebaute Agents, zwischen denen du mit der `Tab`-Taste wechseln kannst.
+Conduit enthält zwei eingebaute Agents, zwischen denen du mit der `Tab`-Taste wechseln kannst.
 
 - **build** - Standard-Agent mit vollem Zugriff für Entwicklungsarbeit
 - **plan** - Nur-Lese-Agent für Analyse und Code-Exploration
@@ -110,20 +110,20 @@ OpenCode enthält zwei eingebaute Agents, zwischen denen du mit der `Tab`-Taste 
 Außerdem ist ein **general**-Subagent für komplexe Suchen und mehrstufige Aufgaben enthalten.
 Dieser wird intern genutzt und kann in Nachrichten mit `@general` aufgerufen werden.
 
-Mehr dazu unter [Agents](https://opencode.ai/docs/agents).
+Mehr dazu unter [Agents](https://conduit.ai/docs/agents).
 
 ### Dokumentation
 
-Mehr Infos zur Konfiguration von OpenCode findest du in unseren [**Docs**](https://opencode.ai/docs).
+Mehr Infos zur Konfiguration von Conduit findest du in unseren [**Docs**](https://conduit.ai/docs).
 
 ### Beitragen
 
-Wenn du zu OpenCode beitragen möchtest, lies bitte unsere [Contributing Docs](./CONTRIBUTING.md), bevor du einen Pull Request einreichst.
+Wenn du zu Conduit beitragen möchtest, lies bitte unsere [Contributing Docs](./CONTRIBUTING.md), bevor du einen Pull Request einreichst.
 
-### Auf OpenCode aufbauen
+### Auf Conduit aufbauen
 
-Wenn du an einem Projekt arbeitest, das mit OpenCode zusammenhängt und "opencode" als Teil seines Namens verwendet (z.B. "opencode-dashboard" oder "opencode-mobile"), füge bitte einen Hinweis in deine README ein, dass es nicht vom OpenCode-Team gebaut wird und nicht in irgendeiner Weise mit uns verbunden ist.
+Wenn du an einem Projekt arbeitest, das mit Conduit zusammenhängt und "conduit" als Teil seines Namens verwendet (z.B. "conduit-dashboard" oder "conduit-mobile"), füge bitte einen Hinweis in deine README ein, dass es nicht vom Conduit-Team gebaut wird und nicht in irgendeiner Weise mit uns verbunden ist.
 
 ---
 
-**Tritt unserer Community bei** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)
+**Tritt unserer Community bei** [Discord](https://discord.gg/conduit) | [X.com](https://x.com/conduit)

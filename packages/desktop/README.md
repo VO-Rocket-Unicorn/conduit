@@ -1,6 +1,6 @@
-# OpenCode Desktop
+# Conduit Desktop
 
-The OpenCode Desktop app, built with Electron.
+The Conduit Desktop app, built with Electron.
 
 ## Development
 

@@ -81,7 +81,7 @@ export interface Interface {
   readonly grep: (input: GrepInput) => Effect.Effect<GrepResult, Ripgrep.Error | Ripgrep.InvalidPatternError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/v2/LocationSearch") {}
+export class Service extends Context.Service<Service, Interface>()("@conduit/v2/LocationSearch") {}
 
 const slash = (value: string) => value.replaceAll("\\", "/")
 const cap = (limit?: number) => Math.min(limit ?? DEFAULT_RESULT_LIMIT, MAX_RESULT_LIMIT)

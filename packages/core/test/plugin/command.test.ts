@@ -1,9 +1,9 @@
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { CommandV2 } from "@opencode-ai/core/command"
-import { Location } from "@opencode-ai/core/location"
-import { CommandPlugin } from "@opencode-ai/core/plugin/command"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import { CommandV2 } from "@conduit-ai/core/command"
+import { Location } from "@conduit-ai/core/location"
+import { CommandPlugin } from "@conduit-ai/core/plugin/command"
+import { AbsolutePath } from "@conduit-ai/core/schema"
 import { location } from "../fixture/location"
 import { testEffect } from "../lib/effect"
 

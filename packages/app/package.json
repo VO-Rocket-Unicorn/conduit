@@ -1,5 +1,5 @@
 {
-  "name": "@opencode-ai/app",
+  "name": "@conduit-ai/app",
   "version": "1.16.2",
   "description": "",
   "type": "module",
@@ -44,9 +44,9 @@
   },
   "dependencies": {
     "@kobalte/core": "catalog:",
-    "@opencode-ai/core": "workspace:*",
-    "@opencode-ai/sdk": "workspace:*",
-    "@opencode-ai/ui": "workspace:*",
+    "@conduit-ai/core": "workspace:*",
+    "@conduit-ai/sdk": "workspace:*",
+    "@conduit-ai/ui": "workspace:*",
     "@sentry/solid": "catalog:",
     "@shikijs/transformers": "3.9.2",
     "@solid-primitives/active-element": "2.1.3",

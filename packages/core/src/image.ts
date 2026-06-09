@@ -38,7 +38,7 @@ export interface Interface {
   ) => Effect.Effect<FileSystem.BinaryContent, ResizerUnavailableError | DecodeError | SizeError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/Image") {}
+export class Service extends Context.Service<Service, Interface>()("@conduit/Image") {}
 
 export const layer = Layer.effect(
   Service,

@@ -1,19 +1,19 @@
-import type { WslOpencodeCheck, WslServerRuntime } from "./types"
+import type { WslConduitCheck, WslServerRuntime } from "./types"
 
 export const wslRuntimeRetryable = (runtime: WslServerRuntime) =>
   runtime.kind === "failed" || runtime.kind === "stopped"
 
-export async function enterWslOpencodeStep(
+export async function enterWslConduitStep(
   distro: string,
   probe: (distro: string) => Promise<unknown>,
-  select: (step: "opencode") => void,
+  select: (step: "conduit") => void,
 ) {
   await probe(distro)
-  select("opencode")
+  select("conduit")
 }
 
-export function wslOpencodeAction(check?: WslOpencodeCheck) {
+export function wslConduitAction(check?: WslConduitCheck) {
   if (!check) return
-  if (!check.resolvedPath) return "Install OpenCode"
-  if (check.matchesDesktop === false) return "Update OpenCode"
+  if (!check.resolvedPath) return "Install Conduit"
+  if (check.matchesDesktop === false) return "Update Conduit"
 }

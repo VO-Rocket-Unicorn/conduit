@@ -71,7 +71,7 @@ export interface Interface {
   readonly release: (cwd: string) => Effect.Effect<void>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@opencode/Search") {}
+export class Service extends Context.Service<Service, Interface>()("@conduit/Search") {}
 
 export const use = serviceUse(Service)
 
@@ -232,9 +232,9 @@ export const layer: Layer.Layer<Service, never, FSUtil.Service | Ripgrep.Service
     // and does not await the scan; the native background scan starts as soon as
     // the picker exists. The `wait` gate dedupes concurrent creation.
     const acquire = Effect.fn("Search.acquire")(function* (cwd: string) {
-      // The opencode test runtime owns an isolated XDG tree that Windows must
+      // The conduit test runtime owns an isolated XDG tree that Windows must
       // remove before process exit, so use ripgrep instead of native FFF there.
-      if (process.env.OPENCODE_TEST_HOME) return undefined
+      if (process.env.CONDUIT_TEST_HOME) return undefined
 
       const dir = FSUtil.resolve(cwd)
       const existing = state.pick.get(dir)
@@ -260,7 +260,7 @@ export const layer: Layer.Layer<Service, never, FSUtil.Service | Ripgrep.Service
             historyDbPath: path.join(root, `${id}.history.mdb`),
             aiMode: true,
             // only the first toolcall picker can accumulate resources to index
-            // home directory, if the user specifically opened opencode at the
+            // home directory, if the user specifically opened conduit at the
             // $HOME level or asked it to search there on purpose, otherwise fallback
             enableHomeDirScanning: isFirstPicker,
             // on unix system it is 99.9% that you do not need to search for the
@@ -306,7 +306,7 @@ export const layer: Layer.Layer<Service, never, FSUtil.Service | Ripgrep.Service
     const files: Interface["files"] = (input) => rg.files(input)
     const tree: Interface["tree"] = (input) => rg.tree(input)
 
-    // in 99% of use cases user that is opened opencode at certain directory will
+    // in 99% of use cases user that is opened conduit at certain directory will
     // conduct a file search in this direcotry, it could be switched later but
     // mostly always we will need a file picker for cwd
     // so synchronously start FFF scan for a cwd so it is ready before first toolcall generated

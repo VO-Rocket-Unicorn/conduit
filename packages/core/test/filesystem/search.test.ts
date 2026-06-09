@@ -4,14 +4,14 @@ import os from "os"
 import path from "path"
 import { Effect } from "effect"
 import { Fff } from "#fff"
-import { Search } from "@opencode-ai/core/filesystem/search"
+import { Search } from "@conduit-ai/core/filesystem/search"
 import { testEffect } from "../lib/effect"
 
 const it = testEffect(Search.defaultLayer)
 
 const tmpdir = (init?: (dir: string) => Effect.Effect<void>) =>
   Effect.acquireRelease(
-    Effect.promise(async () => fs.realpath(await fs.mkdtemp(path.join(os.tmpdir(), "opencode-test-")))),
+    Effect.promise(async () => fs.realpath(await fs.mkdtemp(path.join(os.tmpdir(), "conduit-test-")))),
     (dir) =>
       Effect.promise(() => fs.rm(dir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })).pipe(
         Effect.ignore,
