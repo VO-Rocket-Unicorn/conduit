@@ -1,6 +1,6 @@
 import "./index.css"
 import { Link, Meta, Title } from "@solidjs/meta"
-import { ProviderIcon } from "@opencode-ai/ui/provider-icon"
+import { ProviderIcon } from "@conduit-ai/ui/provider-icon"
 import { geoEquirectangular, geoPath } from "d3-geo"
 import { scaleSqrt } from "d3-scale"
 import countryCodesSource from "i18n-iso-countries/codes.json?raw"
@@ -20,8 +20,8 @@ import {
   type SessionCostEntry,
   type TokenCostEntry,
   type UsagePoint,
-} from "@opencode-ai/stats-core/domain/home"
-import { runtime } from "@opencode-ai/stats-core/runtime"
+} from "@conduit-ai/stats-core/domain/home"
+import { runtime } from "@conduit-ai/stats-core/runtime"
 import { createAsync, query } from "@solidjs/router"
 import { createEffect, createMemo, createSignal, For, onCleanup, onMount, Show, type JSX } from "solid-js"
 import { getRequestEvent } from "solid-js/web"
@@ -48,11 +48,11 @@ const rangeLabels: Record<UsageRange, string> = {
   "1M": "1 Month",
   "2M": "2 Months",
 }
-const statsHomeTitle = "OpenCode Stats"
-const statsHomeDescription = "OpenCode usage, market share, token cost, and session cost stats."
-const statsHomeFallbackUrl = "https://opencode.ai/data/"
+const statsHomeTitle = "Conduit Stats"
+const statsHomeDescription = "Conduit usage, market share, token cost, and session cost stats."
+const statsHomeFallbackUrl = "https://conduit.ai/data/"
 const statsUnfurlPath = "banner.png"
-const statsUnfurlAlt = "OpenCode Stats wordmark on a dark patterned background"
+const statsUnfurlAlt = "Conduit Stats wordmark on a dark patterned background"
 const usageColors = [
   "#ed6aff",
   "#a684ff",
@@ -141,7 +141,7 @@ export default function StatsHome() {
       <Meta name="description" content={statsHomeDescription} />
       <Link rel="canonical" href={statsHomeUrl} />
       <Meta property="og:type" content="website" />
-      <Meta property="og:site_name" content="OpenCode" />
+      <Meta property="og:site_name" content="Conduit" />
       <Meta property="og:title" content={statsHomeTitle} />
       <Meta property="og:description" content={statsHomeDescription} />
       <Meta property="og:url" content={statsHomeUrl} />
@@ -184,8 +184,8 @@ export default function StatsHome() {
 
 function getStatsHomeUrl(base: string, requestUrl: string) {
   const url = new URL(base, requestUrl)
-  if (url.hostname === "stats.opencode.ai") return "https://opencode.ai/data/"
-  if (url.hostname === "stats.dev.opencode.ai") return "https://dev.opencode.ai/data/"
+  if (url.hostname === "stats.conduit.ai") return "https://conduit.ai/data/"
+  if (url.hostname === "stats.dev.conduit.ai") return "https://dev.conduit.ai/data/"
   return url.toString()
 }
 
@@ -398,7 +398,7 @@ function TopModelsSection(props: { data: StatsHomeData["usage"]; leaderboard: St
   return (
     <section id="top-models" data-section="top-models">
       <h2 data-slot="top-models-title">
-        <strong>Top models.</strong> <span>Usage of models across OpenCode Go.</span>
+        <strong>Top models.</strong> <span>Usage of models across Conduit Go.</span>
       </h2>
       <Show
         when={data().some((item) => usageTotal(item) > 0)}

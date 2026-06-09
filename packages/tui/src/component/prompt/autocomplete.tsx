@@ -18,8 +18,8 @@ import { useTerminalDimensions } from "@opentui/solid"
 import { Locale } from "../../util/locale"
 import type { PromptInfo } from "../../prompt/history"
 import { useFrecency } from "../../prompt/frecency"
-import { useBindings, useCommandSlashes, useOpencodeModeStack } from "../../keymap"
-import type { ReferenceDescriptor } from "@opencode-ai/sdk/v2"
+import { useBindings, useCommandSlashes, useConduitModeStack } from "../../keymap"
+import type { ReferenceDescriptor } from "@conduit-ai/sdk/v2"
 import { displayCharAt, mentionTriggerIndex } from "../../prompt/display"
 
 function removeLineRange(input: string) {
@@ -87,7 +87,7 @@ export function Autocomplete(props: {
   const sync = useSync()
   const project = useProject()
   const slashes = useCommandSlashes()
-  const modeStack = useOpencodeModeStack()
+  const modeStack = useConduitModeStack()
   const { theme } = useTheme()
   const dimensions = useTerminalDimensions()
   const frecency = useFrecency()

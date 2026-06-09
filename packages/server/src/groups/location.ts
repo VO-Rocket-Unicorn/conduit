@@ -1,8 +1,8 @@
-import { Location } from "@opencode-ai/core/location"
-import { LocationServiceMap } from "@opencode-ai/core/location-layer"
-import { FileSystem } from "@opencode-ai/core/filesystem"
-import { AbsolutePath } from "@opencode-ai/core/schema"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { Location } from "@conduit-ai/core/location"
+import { LocationServiceMap } from "@conduit-ai/core/location-layer"
+import { FileSystem } from "@conduit-ai/core/filesystem"
+import { AbsolutePath } from "@conduit-ai/core/schema"
+import { WorkspaceV2 } from "@conduit-ai/core/workspace"
 import { Effect, Layer, Schema } from "effect"
 import { HttpServerRequest } from "effect/unstable/http"
 import { HttpApiMiddleware, OpenApi } from "effect/unstable/httpapi"
@@ -52,14 +52,14 @@ export class LocationMiddleware extends HttpApiMiddleware.Service<
   {
     provides: LocationServices
   }
->()("@opencode/HttpApiLocation") {}
+>()("@conduit/HttpApiLocation") {}
 
 function ref(request: HttpServerRequest.HttpServerRequest): Location.Ref {
   const query = new URL(request.url, "http://localhost").searchParams
-  const workspaceID = query.get("location[workspace]") || request.headers["x-opencode-workspace"]
+  const workspaceID = query.get("location[workspace]") || request.headers["x-conduit-workspace"]
   return {
     directory: AbsolutePath.make(
-      query.get("location[directory]") || request.headers["x-opencode-directory"] || process.cwd(),
+      query.get("location[directory]") || request.headers["x-conduit-directory"] || process.cwd(),
     ),
     workspaceID: workspaceID ? WorkspaceV2.ID.make(workspaceID) : undefined,
   }

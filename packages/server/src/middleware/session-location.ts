@@ -1,9 +1,9 @@
-import { Database } from "@opencode-ai/core/database/database"
-import { LocationServiceMap } from "@opencode-ai/core/location-layer"
-import { AbsolutePath } from "@opencode-ai/core/schema"
-import { SessionV2 } from "@opencode-ai/core/session"
-import { SessionTable } from "@opencode-ai/core/session/sql"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { Database } from "@conduit-ai/core/database/database"
+import { LocationServiceMap } from "@conduit-ai/core/location-layer"
+import { AbsolutePath } from "@conduit-ai/core/schema"
+import { SessionV2 } from "@conduit-ai/core/session"
+import { SessionTable } from "@conduit-ai/core/session/sql"
+import { WorkspaceV2 } from "@conduit-ai/core/workspace"
 import { eq } from "drizzle-orm"
 import { Effect, Layer, Schema } from "effect"
 import { HttpRouter } from "effect/unstable/http"
@@ -16,7 +16,7 @@ export class SessionLocationMiddleware extends HttpApiMiddleware.Service<
   {
     provides: LocationServices
   }
->()("@opencode/HttpApiSessionLocation", {
+>()("@conduit/HttpApiSessionLocation", {
   error: [InvalidRequestError, SessionNotFoundError],
 }) {}
 

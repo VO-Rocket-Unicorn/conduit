@@ -1,9 +1,9 @@
 import { render, TimeToFirstDraw, useRenderer, useTerminalDimensions } from "@opentui/solid"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import { Deferred, Effect } from "effect"
-import { Global } from "@opencode-ai/core/global"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { Global } from "@conduit-ai/core/global"
+import { Flag } from "@conduit-ai/core/flag/flag"
+import { InstallationVersion } from "@conduit-ai/core/installation/version"
 import { ClipboardProvider, useClipboard } from "./context/clipboard"
 import { EpilogueProvider } from "./context/epilogue"
 import * as Selection from "./util/selection"
@@ -67,11 +67,11 @@ import { createPluginRuntime, PluginRuntimeProvider, usePluginRuntime, type TuiP
 import { CommandPaletteDialog } from "./component/command-palette"
 import {
   COMMAND_PALETTE_COMMAND,
-  OPENCODE_BASE_MODE,
-  OpencodeKeymapProvider,
-  registerOpencodeKeymap,
+  CONDUIT_BASE_MODE,
+  ConduitKeymapProvider,
+  registerConduitKeymap,
   useBindings,
-  useOpencodeKeymap,
+  useConduitKeymap,
 } from "./keymap"
 
 import type { EventSource } from "./context/sdk"
@@ -110,7 +110,7 @@ const appBindingCommands = [
   "variant.list",
   "provider.connect",
   "console.org.switch",
-  "opencode.status",
+  "conduit.status",
   "theme.switch",
   "theme.switch_mode",
   "theme.mode.lock",
@@ -188,7 +188,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
             useKittyKeyboard: {},
             autoFocus: false,
             openConsoleOnError: false,
-            useMouse: !Flag.OPENCODE_DISABLE_MOUSE && input.config.mouse,
+            useMouse: !Flag.CONDUIT_DISABLE_MOUSE && input.config.mouse,
             consoleOptions: {
               keyBindings: [{ name: "y", ctrl: true, action: "copy-selection" }],
             },
@@ -199,7 +199,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
       win32DisableProcessedInput()
       const keymap = createDefaultOpenTuiKeymap(renderer)
       yield* Effect.acquireRelease(
-        Effect.sync(() => registerOpencodeKeymap(keymap, renderer, input.config)),
+        Effect.sync(() => registerConduitKeymap(keymap, renderer, input.config)),
         (unregister) => Effect.sync(unregister),
       )
       yield* Effect.addFinalizer(() =>
@@ -247,13 +247,13 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                 >
                   <TuiStartupProvider
                     value={{
-                      initialRoute: process.env.OPENCODE_ROUTE ? JSON.parse(process.env.OPENCODE_ROUTE) : undefined,
-                      skipInitialLoading: Boolean(process.env.OPENCODE_FAST_BOOT),
+                      initialRoute: process.env.CONDUIT_ROUTE ? JSON.parse(process.env.CONDUIT_ROUTE) : undefined,
+                      skipInitialLoading: Boolean(process.env.CONDUIT_FAST_BOOT),
                     }}
                   >
                     <ClipboardProvider>
                       <EpilogueProvider set={(value) => (epilogue.value = value)}>
-                        <OpencodeKeymapProvider keymap={keymap}>
+                        <ConduitKeymapProvider keymap={keymap}>
                           <ArgsProvider {...input.args}>
                             <KVProvider>
                               <ToastProvider>
@@ -309,7 +309,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                               </ToastProvider>
                             </KVProvider>
                           </ArgsProvider>
-                        </OpencodeKeymapProvider>
+                        </ConduitKeymapProvider>
                       </EpilogueProvider>
                     </ClipboardProvider>
                   </TuiStartupProvider>
@@ -338,7 +338,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   const dialog = useDialog()
   const local = useLocal()
   const kv = useKV()
-  const keymap = useOpencodeKeymap()
+  const keymap = useConduitKeymap()
   const event = useEvent()
   const sdk = useSDK()
   const toast = useToast()
@@ -389,7 +389,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   const offSelectionKeys = keymap.intercept(
     "key",
     ({ event }) => {
-      if (!Flag.OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
+      if (!Flag.CONDUIT_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
       Selection.handleSelectionKey(renderer, toast, event, clipboard)
     },
     { priority: 1 },
@@ -417,17 +417,17 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
 
   // Update terminal window title based on current route and session
   createEffect(() => {
-    if (!terminalTitleEnabled() || Flag.OPENCODE_DISABLE_TERMINAL_TITLE) return
+    if (!terminalTitleEnabled() || Flag.CONDUIT_DISABLE_TERMINAL_TITLE) return
 
     if (route.data.type === "home") {
-      renderer.setTerminalTitle("OpenCode")
+      renderer.setTerminalTitle("Conduit")
       return
     }
 
     if (route.data.type === "session") {
       const session = sync.session.get(route.data.sessionID)
       if (!session || isDefaultTitle(session.title)) {
-        renderer.setTerminalTitle("OpenCode")
+        renderer.setTerminalTitle("Conduit")
         return
       }
 
@@ -577,7 +577,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         name: "workspace.list",
         title: "Manage workspaces",
         category: "Workspace",
-        hidden: !Flag.OPENCODE_EXPERIMENTAL_WORKSPACES,
+        hidden: !Flag.CONDUIT_EXPERIMENTAL_WORKSPACES,
         slashName: "workspaces",
         run: () => {
           dialog.replace(() => <DialogWorkspaceList />)
@@ -727,7 +727,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
           ]
         : []),
       {
-        name: "opencode.status",
+        name: "conduit.status",
         title: "View status",
         slashName: "status",
         run: () => {
@@ -776,7 +776,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         name: "docs.open",
         title: "Open docs",
         run: () => {
-          open("https://opencode.ai/docs").catch(() => {})
+          open("https://conduit.ai/docs").catch(() => {})
           dialog.clear()
         },
         category: "System",
@@ -911,7 +911,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   }))
 
   useBindings(() => ({
-    mode: OPENCODE_BASE_MODE,
+    mode: CONDUIT_BASE_MODE,
     bindings: tuiConfig.keybinds.gather("app", appBindingCommands),
   }))
 
@@ -920,7 +920,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   }))
 
   useBindings(() => ({
-    mode: OPENCODE_BASE_MODE,
+    mode: CONDUIT_BASE_MODE,
     enabled: () => {
       const current = promptRef.current
       if (!current?.focused) return true
@@ -1017,7 +1017,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
     await DialogAlert.show(
       dialog,
       "Update Complete",
-      `Successfully updated to OpenCode v${result.data.version}. Please restart the application.`,
+      `Successfully updated to Conduit v${result.data.version}. Please restart the application.`,
     )
 
     destroyRenderer(renderer)
@@ -1038,7 +1038,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       flexDirection="column"
       backgroundColor={theme.background}
       onMouseDown={(evt) => {
-        if (!Flag.OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
+        if (!Flag.CONDUIT_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
         if (evt.button !== MouseButton.RIGHT) return
 
         if (!Selection.copy(renderer, toast, clipboard)) return
@@ -1046,12 +1046,12 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         evt.stopPropagation()
       }}
       onMouseUp={
-        !Flag.OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT
+        !Flag.CONDUIT_EXPERIMENTAL_DISABLE_COPY_ON_SELECT
           ? () => Selection.copy(renderer, toast, clipboard)
           : undefined
       }
     >
-      <Show when={Flag.OPENCODE_SHOW_TTFD}>
+      <Show when={Flag.CONDUIT_SHOW_TTFD}>
         <TimeToFirstDraw />
       </Show>
       <Show when={ready()}>

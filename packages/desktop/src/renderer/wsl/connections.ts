@@ -1,4 +1,4 @@
-import type { WslServersState } from "@opencode-ai/app/wsl/types"
+import type { WslServersState } from "@conduit-ai/app/wsl/types"
 
 export function readyWslConnections(state?: WslServersState) {
   return (state?.servers ?? []).flatMap((item) => {

@@ -4,7 +4,7 @@
  * sibling endpoint's failure as an unhandled rejection.
  */
 import { describe, expect, test } from "bun:test"
-import { aggregateFailures } from "@opencode-ai/tui/context/aggregate-failures"
+import { aggregateFailures } from "@conduit-ai/tui/context/aggregate-failures"
 
 describe("aggregateFailures", () => {
   test("returns null when every result is fulfilled", () => {
@@ -45,7 +45,7 @@ describe("aggregateFailures", () => {
     const configError = {
       name: "ConfigInvalidError",
       data: {
-        path: "/tmp/opencode.json",
+        path: "/tmp/conduit.json",
         issues: [{ message: "Expected object", path: ["provider", "anthropic", "options"] }],
       },
     }
@@ -63,7 +63,7 @@ describe("aggregateFailures", () => {
       },
     ])
 
-    expect(err!.message).toContain("config.get: Configuration is invalid at /tmp/opencode.json")
+    expect(err!.message).toContain("config.get: Configuration is invalid at /tmp/conduit.json")
     expect(err!.message).toContain("Expected object provider.anthropic.options")
   })
 

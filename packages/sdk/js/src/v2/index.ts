@@ -1,18 +1,18 @@
 export * from "./client.js"
 export * from "./server.js"
 
-import { createOpencodeClient } from "./client.js"
-import { createOpencodeServer } from "./server.js"
+import { createConduitClient } from "./client.js"
+import { createConduitServer } from "./server.js"
 import type { ServerOptions } from "./server.js"
 
 export * as data from "./data.js"
 
-export async function createOpencode(options?: ServerOptions) {
-  const server = await createOpencodeServer({
+export async function createConduit(options?: ServerOptions) {
+  const server = await createConduitServer({
     ...options,
   })
 
-  const client = createOpencodeClient({
+  const client = createConduitClient({
     baseUrl: server.url,
   })
 
